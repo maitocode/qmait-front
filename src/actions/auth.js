@@ -46,3 +46,4 @@ export const logout = () => (dispatch) => {
     dispatch({ type: TYPE.LOGOUT });
 };
 // TODO: CREATE REDUX REDUCERS
+
