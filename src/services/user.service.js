@@ -1,25 +1,20 @@
 import axios from "axios";
-const API_URL = "http://localhost:7071/api/login";
+import authHeader from "./auth-header.js";
 
-export const login = (username, password) => {
-    return axios
-        .post(API_URL + "signin", { username, password })
-        .then((response) => {
-            if (response.data.accesstoken) {
-                localStorage.setItem("user", JSON.stringify(response.data));
-            }
-            return response.data;
-        });
+const API_URL = 'http://localhost:24310/api/test/';
+
+export const getPublicContent = () => {
+    return axios.get(API_URL + 'all');
 }
 
-export const logout = () => {
-    localStorage.removeItem("user");
+export const getUserBoard = () => {
+    return axios.get(API_URL + 'user', { headers: authHeader() });
 }
 
-export const register = (username, email, password) => {
-    return axios.post(API_URL + "signup", {
-        username,
-        email,
-        password
-    });
+export const getModeratorBoard = () => {
+    return axios.get(API_URL + 'mod', { headers: authHeader() });
+}
+
+export const getAdminBoard = () => {
+    return axios.get(API_URL + 'admin', { headers: authHeader() });
 }
